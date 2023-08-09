@@ -1,38 +1,36 @@
-board = [['-','-','-'],
-         ['-','-','-'],
-         ['-','-','-']]
-
-col = int(input('X player, select a column 1-3: '))
-row = int(input('X player, select a row 1-3: '))
-col -=1
-row -=1
-
-
-if board[row][col] == '-':
-  board[row][col] = 'X'
-else: 
-  print('That spot is already taken')
-  col = int(input('X player, select a column 1-3: '))
-  row = int(input('X player, select a row 1-3: '))
-  col -=1
-  row -=1
+board = [ ["-", "-", "-"],
+         ["-", "-", "-"],
+         ["-", "-", "-"] ]
 print(board[0])
 print(board[1])
 print(board[2])
-
-col = int(input('O player, select a column 1-3: '))
-row = int(input('O player, select a column 1-3: '))
-col -= 1
-row -= 1
-
-if board[row][col] == '-':
-  board[row][col] = 'O'
-else: 
-  print ('That spot is already taken')
-  col = int(input('O player, select a column 1-3: '))
-  row = int(input('O player, select a column 1-3: '))
-  col -= 1
-  row -= 1
-print(board[0])
-print(board[1])
-print(board[2])
+col=0
+row=0
+playerTurn = "X"
+for counter in range(1,10):
+   valid = False
+   while (valid == False): #here is the while loop that addresses Item 2.
+     col=0
+     row=0
+     while (col < 1 or col > 3):
+       col = int(input(playerTurn + " player, select a column 1-3: "))
+       if (col < 1 or col > 3):
+         print("The column must be between 1 and 3.")
+     while (row < 1 or row > 3):
+       row = int(input(playerTurn + " player, select a row 1-3: "))
+       if (row < 1 or row > 3):
+         print("The row must be between 1 and 3.")
+     col -= 1
+     row -= 1
+     if board[row][col] == '-':
+       board[row][col] = playerTurn
+       valid = True #here is the break statement that addresses Item 2
+     else:
+       print("Oops, that spot was already taken. Please select another spot.")
+   print(board[0])
+   print(board[1])
+   print(board[2])
+   if playerTurn =="X":
+     playerTurn="O"
+   else:
+     playerTurn="X"
